@@ -4,8 +4,10 @@
     <meta charset="utf-8">
     <title>GeoResidence — Mengalihkan...</title>
     <script type="text/javascript">
-      // Redirect 404 to root hash router
-      window.location.replace(window.location.origin + '/geo-residance/#/');
+      // Dynamic fallback redirect for GitHub Pages subpath
+      var segments = window.location.pathname.split('/').filter(Boolean);
+      var repo = segments.length > 0 ? segments[0] : 'geo-residence-geomatika-25';
+      window.location.replace(window.location.origin + '/' + repo + '/#/');
     </script>
   </head>
   <body>
