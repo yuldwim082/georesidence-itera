@@ -1,0 +1,23 @@
+version: '3.8'
+
+services:
+  georesidence:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: georesidence-app
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    environment:
+      - PORT=8000
+      - PROJECT_NAME=GeoResidence
+      - DATABASE_URL=sqlite:///./georesidence.db
+      - SECRET_KEY=georesidence-production-secret-key-change-this
+      - ADMIN_INITIAL_USERNAME=admin
+      - ADMIN_INITIAL_PASSWORD=admin123
+      - PRIVACY_MIN_DISPLACEMENT_METERS=120.0
+      - PRIVACY_MAX_DISPLACEMENT_METERS=280.0
+    volumes:
+      - ./backend/georesidence.db:/app/backend/georesidence.db
+      - ./data:/app/data
